@@ -1,19 +1,18 @@
 %define upstream_name    Geo-Coordinates-UTM
 %define upstream_version 0.09
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Translation between  Lat Lon and UTM Coords
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Geo/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Translation between  Lat Lon and UTM Coords
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Geo/%{upstream_name}-%{upstream_version}.tar.gz
 
-
-BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildArch:	noarch
 
 %description
 This module will translate latitude longitude coordinates to Universal
@@ -39,23 +38,34 @@ Transverse Mercator Projection
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes README
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
 
+%changelog
+* Mon Apr 25 2011 Funda Wang <fwang@mandriva.org> 0.90.0-2mdv2011.0
++ Revision: 658532
+- rebuild for updated spec-helper
+
+* Tue Jul 13 2010 Jérôme Quelin <jquelin@mandriva.org> 0.90.0-1mdv2011.0
++ Revision: 551992
+- update to 0.09
+
+* Sun May 31 2009 Jérôme Quelin <jquelin@mandriva.org> 0.80.0-1mdv2010.0
++ Revision: 381696
+- import perl-Geo-Coordinates-UTM
+
+
+* Sun May 31 2009 cpan2dist 0.08-1mdv
+- initial mdv release, generated with cpan2dist
 
