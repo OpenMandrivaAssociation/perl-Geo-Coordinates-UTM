@@ -8,7 +8,7 @@ Release:	3
 Summary:	Translation between  Lat Lon and UTM Coords
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{upstream_name}
+Url:		https://search.cpan.org/dist/%{upstream_name}
 Source0:	http://www.cpan.org/modules/by-module/Geo/Geo-Coordinates-UTM-%{upstream_version}.tar.gz
 
 BuildRequires:	perl-devel
